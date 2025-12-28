@@ -50,13 +50,20 @@ export interface FileEntry {
   children?: FileEntry[];
 }
 
+export interface GitState {
+  branch: string;
+  modifiedFiles: string[]; // file IDs
+  stagedFiles: string[];   // file IDs
+  isPushing: boolean;
+}
+
 export interface ProjectState {
   activeIDE: IDEType;
   files: FileEntry[];
   currentFileId: string | null;
   isTerminalOpen: boolean;
   isAISidebarOpen: boolean;
-  activeSidebarTab: 'explorer' | 'actions' | 'tasks' | 'search' | 'plugins' | 'compiler';
+  activeSidebarTab: 'explorer' | 'actions' | 'tasks' | 'search' | 'plugins' | 'compiler' | 'git';
   workflows: WorkflowRun[];
   terminals: TerminalInstance[];
   activeTerminalId: string;
@@ -65,4 +72,5 @@ export interface ProjectState {
   plugins: Plugin[];
   isCompiling: boolean;
   lastCompileStatus: 'none' | 'success' | 'failed';
+  git: GitState;
 }
